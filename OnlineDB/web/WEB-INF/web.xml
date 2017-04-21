@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>OnlineDB.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/OnlineDB/Login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>signup</servlet-name>
+    <servlet-class>OnlineDB.signup</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signup</servlet-name>
+    <url-pattern>/OnlineDB/signup</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>indexLoad</servlet-name>
+    <servlet-class>OnlineDB.indexLoad</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>indexLoad</servlet-name>
+    <url-pattern>/OnlineDB/indexLoad</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>createUrl</servlet-name>
+    <servlet-class>OnlineDB.createUrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>createUrl</servlet-name>
+    <url-pattern>/OnlineDB/createUrl</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>在线数据库管理系统</title>
+    <link href="style/authority/DB_css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="login_center">
+    <div id="login_area">
+        <div id="login_box" style="border:1px solid #C0C0C0; border-radius: 8px; ">
+            <div id="login_form" style="width:50%; margin:auto">
+                <form id="submitForm" action="createUrl" method="post">
+                    <div id="txt"><h1>连接数据库</h1></div>
+                    <div>
+                        连&nbsp;&nbsp;接&nbsp;&nbsp;名：<input type="text" name="url_name" class="linkname" id="linkname"
+                                                           required><font color="red">*</font>
+                    </div>
+                    <div>
+                        地址&nbsp;端口：<input type="ip" name="url" class="ipaddress" id="ipaddress" required><font
+                            color="red">*</font>
+                    </div>
+                    <div>
+                        用&nbsp;&nbsp;户&nbsp;&nbsp;名：<input type="usename" name="url_user" class="usename" id="usename"
+                                                           required><font color="red">*</font>
+                    </div>
+                    <div>
+                        密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="url_password"
+                                                                            class="pwd" id="pwd" required><font
+                            color="red">*</font>
+                    </div>
+                    <div id="btn_area">
+                        <input type="submit" class="signup_btn" id="signup_sub" value="确 定">
+                        <input type="reset" class="signup_btn" id="signup_ret" value="重 置">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

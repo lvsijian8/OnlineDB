@@ -1,0 +1,9 @@
+OnlineDB/*
+
+!OnlineDB/src/
+
+OnlineDB/src/1.properties
+
+!OnlineDB/web/
+
+OnlineDB/web/WEB-INF/classes
