@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+             <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body class="um-vp " ontouchstart>
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh bc-text-head ub bc-head">
+                <div class="nav-btn" id="nav-left">
+                    <div class=""></div>
+                </div>
+                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">OnlineDB</h1>
+                <div class="nav-btn nav-bt" id="nav-right"></div>
+            </div>
+            <!--header结束--><!--content开始-->
+            <div id="content" class="ub-f1 tx-l">
+
+            </div>
+            <!--content结束-->
+             <div id="footer" class="uf t-bla ub tab  b-gra2 c-gra2">
+              <div class="pos_re ub ub-f1">
+                 <input class="uhide" type="radio" name="tabSwitch">
+                 <div onmousedown="zy_touch('',data)" ontouchstart="zy_touch('',data )" class="ub-f1 ub ub-ver tab-act">
+                     <div class="ub-f1 ub-img5 tp-map"></div>
+                     <div class="uinn-a13 ulev-1 tx-c act-col">数据</div>
+                 </div>
+             </div>
+             <div class="pos_re ub ub-f1">
+                 <input class="uhide" type="radio" name="tabSwitch"  checked="checked">
+                 <div onmousedown="zy_touch('',link)" ontouchstart="zy_touch('',link)" class="ub-f1 ub ub-ver tab-act">
+                     <div class="ub-f1 ub-img5 tp-talk"></div>
+                     <div class="uinn-a13 ulev-1 tx-c act-col">连接</div>
+                 </div>
+             </div>
+              <div class="pos_re ub ub-f1">
+                 <input class="uhide" type="radio" name="tabSwitch"  checked="checked" >
+                 <div onmousedown="zy_touch('',manage)" ontouchstart="zy_touch('',manage)" class="ub-f1 ub ub-ver tab-act">
+                     <div class="ub-f1 ub-img5 tp-set"></div>
+                     <div class="uinn-a13 ulev-1 tx-c act-col">管理</div>
+                 </div>
+             </div>   
+        </div>
+
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/zy_click.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            var titHeight = $('#header').offset().height;
+            appcan.frame.open("content", "manage_content.html", 0, titHeight);
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, titHeight);
+            }
+        });
+        function data(){
+              appcan.window.open("data","index.html")
+          } 
+          
+           function link(){
+              appcan.window.open("link","link.html")
+          }
+    </script>
+</html>

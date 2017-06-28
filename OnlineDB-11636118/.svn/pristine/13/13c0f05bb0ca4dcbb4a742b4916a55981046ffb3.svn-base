@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+             <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body class="" ontouchstart>
+        <div class="ub ub-ver umar-l umar-r">
+            <div class=""  onmousedown="zy_touch('',user)" ontouchstart="zy_touch('',user )">
+                <div class="ub bc-bg1 umar-a">
+            <div class="ub-img icon6 wh_db umar-a"></div>
+            <div class="ub ub-f1 ub-ver ub-pc umar-a">
+                <div class="ulev1" id="user_name">用户名</div>
+                <div class="ulev-1" id="user_email">账号邮箱：</div>
+            </div>
+        </div>
+            </div>
+            
+        <div class="ub bc-bg1 umar-a ub-ac">
+            <div class="ub-img icon7 wh_icon4 ub ub-ac umar-a"></div>
+            <div class="ulev-1 ub ub-ac umar-l">功能介绍</div>
+        </div>
+        
+        <div class="ub bc-bg1 umar-a ub-ac">
+            <div class="ub-img icon5 wh_icon5 ub ub-ac umar-a"></div>
+            <div class="ulev-1 ub ub-ac umar-l">意见与反馈</div>
+        </div>
+        
+        <div class="ub bc-bg1 umar-a ub-ac">
+            <div class="ub-img icon4 wh_icon4 ub ub-ac umar-a"></div>
+            <div class="ulev-1 ub ub-ac umar-l">关于OnlineDB</div>
+        </div>
+        
+        <div class="uinn-at1 umar-a">
+             <div class="btn ub ub-ac bc-text-head ub-pc bc-btn umar-t uc-a1"  id="unlogin">注销</div>
+        </div>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/zy_click.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/appcan.listview.js"></script>
+        <script src="js/jquery-1.8.3.min.js"></script>
+	</body>
+	<script>
+	window.onload=function(){
+	document.getElementById("user_name").innerHTML=appcan.locStorage.getVal('user_name');
+    document.getElementById("user_email").innerHTML=appcan.locStorage.getVal('user_email');
+	}
+	//appcan.onload
+        appcan.ready(function() {
+            appcan.initBounce();
+        })     
+        
+        function user(){
+              appcan.window.open("user","user.html")
+          } 
+        
+        $("#unlogin").click(function() {
+            appcan.locStorage.remove('user_id'); 
+            appcan.locStorage.remove('user_name'); 
+            appcan.locStorage.remove('user_email'); 
+            appcan.window.open({
+                name : 'login',
+                data : 'login.html',
+            })
+            return;
+        });
+               
+    </script>
+</html>

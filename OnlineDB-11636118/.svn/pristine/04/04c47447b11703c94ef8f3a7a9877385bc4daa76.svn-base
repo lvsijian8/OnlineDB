@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.tree.js"></script>
+        <style>
+            ul, ol, li, dl, dt, dd {
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+            }
+            h1, h2, h3, form, input, iframe, span {
+                margin: 0;
+                padding: 0;
+            }
+            a {
+                color: #7FB0C8;
+            }
+            a:link {
+                color: #7FB0C8;
+                TEXT-DECORATION: none;
+            }
+            a:visited {
+                color: #7FB0C8;
+                TEXT-DECORATION: none;
+            }
+            a:hover {
+                color: #fff;
+                TEXT-DECORATION: none;
+            }
+            .white {
+                color: #fff;
+            }
+            .white a:link {
+                color: #fff;
+                TEXT-DECORATION: none;
+            }
+            .white a:visited {
+                color: #fff;
+                TEXT-DECORATION: none;
+            }
+            .white a:hover {
+                color: #73E1F5;
+                TEXT-DECORATION: none;
+            }
+            /* 树形菜单开始 */
+            .close {
+                float: right;
+                clear: right;
+                font-size: 12px;
+                font-weight: normal;
+                cursor: pointer;
+                padding-right: 10px;
+            }
+            .title {
+                font-size: 14px;
+                color: #fff;
+                margin-bottom: 10px;
+                width: 290px;
+            }
+            .menu {
+                width: 300px;
+                height: 470px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                margin-bottom: 10px;
+            }
+            .menu {
+                SCROLLBAR-FACE-COLOR: #002537;
+                SCROLLBAR-HIGHLIGHT-COLOR: #002537;
+                SCROLLBAR-SHADOW-COLOR: #0E6893;
+                SCROLLBAR-3DLIGHT-COLOR: #0E6893;
+                SCROLLBAR-ARROW-COLOR: #fff;
+                SCROLLBAR-TRACK-COLOR: #053d58;
+                SCROLLBAR-DARKSHADOW-COLOR: #002537;
+                SCROLLBAR-BASE-COLOR: #01152a;
+            }
+            .l1 {
+                font-size: 13px;
+                padding: 5px 0 0 30px;
+                height: 20px;
+                margin-bottom: 5px;
+                cursor: pointer;
+            }
+            .slist {
+                margin: 0 0 5px 0;
+                display: none;
+            }
+            .l2 {
+                padding: 0 0 0 35px;
+                font-size: 13px;
+            }
+            .l2 a {
+                padding: 6px 0 0 5px;
+                width: 230px;
+                height: 21px;
+                display: block;
+            }
+            .currentl2 a, .l2 a:hover {
+                color: #000;
+            }
+            .sslist {
+                width: 235px;
+                overflow: hidden;
+                margin: 0 0 5px 35px;
+                display: none;
+            }
+            .l3 a {
+                padding: 6px 0 0 5px;
+                width: 230px;
+                height: 20px;
+                display: block;
+            }
+            .currentl3 a, .l3 a:hover {
+                color: #000;
+                font-weight: bold;
+            }
+        </style>
+
+        <script>
+            function xuanwo() {
+                appcan.window.evaluateScript({
+                    name:'content',
+                    scriptContent:'changtable()'
+                })
+            }
+        
+            // 树状菜单
+            $(document).ready(function() {
+                $(".l1").toggle(function() {
+
+                    $(this).next(".slist").animate({
+                        height : 'toggle',
+                        opacity : 'toggle'
+                    }, "slow");
+                }, function() {
+
+                    $(this).next(".slist").animate({
+                        height : 'toggle',
+                        opacity : 'toggle'
+                    }, "slow");
+                });
+
+                $(".l2").toggle(function() {
+                    $(this).next(".sslist").animate({
+                        height : 'toggle',
+                        opacity : 'toggle'
+                    }, "slow");
+                }, function() {
+                    $(this).next(".sslist").animate({
+                        height : 'toggle',
+                        opacity : 'toggle'
+                    }, "slow");
+                });
+
+                $(".close").toggle(function() {
+                    $(".slist").animate({
+                        height : 'toggle',
+                        opacity : 'hide'
+                    }, "fast");
+                    $(".sslist").animate({
+                        height : 'toggle',
+                        opacity : 'hide'
+                    }, "fast");
+                }, function() {
+                    $(".slist").animate({
+                        height : 'toggle',
+                        opacity : 'show'
+                    }, "fast");
+                    $(".sslist").animate({
+                        height : 'toggle',
+                        opacity : 'show'
+                    }, "fast");
+                });
+            });
+        </script>
+
+    </head>
+    <body class="" ontouchstart>
+        <div id="nav_resource" >
+            <div >
+                <h1 class="title"><span class="close"></span></h1>
+            </div>
+            <div class="menu" >
+                <!--<h1 class="l1">一级菜单</h1>
+                <div class="slist">
+                <h2 class="l2"><a href="javascript:function()">二级菜单</a></h2>
+                <ul class="sslist">
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                </ul>
+                <h2 class="l2"><a href="javascript:function()">二级菜单</a></h2>
+                <ul class="sslist">
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                <li class="l3"><a href="javascript:function()">&nbsp;&nbsp;·三级菜单</a></li>
+                </ul>
+                <h2 class="l2"><a href="javascript:function()">二级菜单</a></h2>
+                </div>
+                <h1 class="l1">一级菜单</h1>
+                <div class="slist">
+                <h2 class="l2"><a href="javascript:function()">二级菜单</a></h2>
+                <h2 class="l2"><a href="javascript:function()">二级菜单</a></h2>
+                <h2 class="l2"><a href="javascript:function()">二级菜单</a></h2>-->
+                <h1 class="l1" onclick="ajaxS(0,0,-1,-1,this)">6lou_oray</h1><div class="slist" id="00-1-1"></div>
+                <h1 class="l1" onclick="ajaxS(0,1,-1,-1,this)">6lou_nat123</h1><div class="slist" id="01-1-1"></div>
+                <h1 class="l1" onclick="ajaxS(0,2,-1,-1,this)">111</h1><div class="slist" id="02-1-1"></div>
+                <h1 class="l1" onclick="ajaxS(0,3,-1,-1,this)">qcloud</h1>
+                <div class="slist" id="03-1-1">
+                    <h2 class="l2" onclick="ajaxS(1,3,0,-1,this)">information_schema</h2><ul class="sslist" id="130-1"></ul><h2 class="l2" onclick="ajaxS(1,3,1,-1,this)">MrGarden</h2>
+                    <ul class="sslist" id="131-1" style="display: none;">
+                        <li class="l3" onclick="ajaxS(2,3,1,0,this)">
+                            ·ask_me
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,1,this)">
+                            ·groups
+                        </li>
+                        <li class="l3" onclick="xuanwo()">
+                            ·history
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,3,this)">
+                            ·plant
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,4,this)">
+                            ·pot
+                        </li>
+                        <li class="l3" onclick="xuanwo()">
+                            ·pot_1
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,6,this)">
+                            ·pot_10
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,7,this)">
+                            ·pot_2
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,8,this)">
+                            ·pot_3
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,9,this)">
+                            ·pot_8
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,10,this)">
+                            ·pot_9
+                        </li>
+                        <li class="l3" onclick="xuanwo()">
+                            ·user
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,1,12,this)">
+                            ·user_pot
+                        </li>
+                    </ul><h2 class="l2" onclick="ajaxS(1,3,2,-1,this)">OnlineDBm</h2>
+                    <ul class="sslist" id="132-1" style="display: none;">
+                        <li class="l3" onclick="ajaxS(2,3,2,0,this)">
+                            ·url
+                        </li>
+                        <li class="l3" onclick="ajaxS(2,3,2,1,this)">
+                            ·user
+                        </li>
+                    </ul><h2 class="l2" onclick="ajaxS(1,3,3,-1,this)">flowerpot</h2><ul class="sslist" id="133-1"></ul><h2 class="l2" onclick="ajaxS(1,3,4,-1,this)">hotdie</h2><ul class="sslist" id="134-1"></ul><h2 class="l2" onclick="ajaxS(1,3,5,-1,this)">mysql</h2><ul class="sslist" id="135-1"></ul><h2 class="l2" onclick="ajaxS(1,3,6,-1,this)">onlinedb</h2><ul class="sslist" id="136-1"></ul><h2 class="l2" onclick="ajaxS(1,3,7,-1,this)">performance_schema</h2><ul class="sslist" id="137-1"></ul><iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>
+                </div>
+                <h1 class="l1" onclick="ajaxS(0,4,-1,-1,this)">111</h1><div class="slist" id="04-1-1"></div>
+                <h1 class="l1" onclick="ajaxS(0,5,-1,-1,this)">www</h1><div class="slist" id="05-1-1"></div>
+                <h1 class="l1" onclick="ajaxS(0,6,-1,-1,this)">qqq</h1><div class="slist" id="06-1-1"></div>
+                <h1 class="l1" onclick="ajaxS(0,7,-1,-1,this)">xxx</h1><div class="slist" id="07-1-1"></div>
+
+                <h1 class="l1">↑单击进行链接</h1>
+
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </body>
+</html>

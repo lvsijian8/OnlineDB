@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart onload="useLoad()">
+        <div id="page_0" class="up ub ub-ver bc-bg" tabindex="0">
+            <!--header开始-->
+            <div id="header" class="uh bc-text-head ub bc-head">
+                <div class="nav-btn" id="">
+                </div>
+                <h1 class="ut ub-f1 ulev-3 ut-s tx-c" tabindex="0">登录</h1>
+                <div class="nav-btn" id="nav-right">
+                    <!--按钮开始-->
+                    
+                    <!--按钮结束-->
+                </div>
+            </div>
+            <!--header结束--><!--content开始-->
+        <div class="ub ub-ver uinn-a3 ub-fv">
+        <div class="umar-t">
+                <div class="ub ub-ac ub-pc umar-t">
+                    <img src="css/icons/logo.png" style="width: 10.625em;height: auto" />
+                </div>
+            </div>
+            <div class="ub ub-ver uinn uinn-at1">
+                <form method="get" action="http://localhost:8080/MrGarden/loginWeb1" onsubmit="login();return false;">
+                    <div class="umar-a uba bc-border uc-a1 c-wh">
+                        <div class="ub ub-ac ubb umh5 bc-border ">
+                            <div class=" uinput ub ub-f1">
+                                <div class="uinn fa fa-user sc-text"></div>
+                                <input placeholder="用户名" type="text" name="uname" id="text_0" class="ub-f1">
+                            </div>
+                        </div>
+                        <div class="ub ub-ac umh5 bc-border ">
+                            <div class=" uinput ub ub-f1">
+                                <div class="uinn fa fa-lock sc-text"></div>
+                                <input placeholder="密码" type="password" id="text_1" name="pswd" class="umw4 ub-f1">
+ 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ub ub-ver">
+                        <div class="uinn-at1 umar-a">
+                            <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uc-a1" id="login" onclick="login();">
+                                登录
+                            </div>
+                        </div>
+                        <div class="uinn-at2 ub sc-text-active ulev-4 umar-a" style="cursor: pointer" onclick="openRegister()">
+                            <div class="ub-f1 ">
+                                立即注册
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit"class="uinvisible"></button>
+                </form>
+ 
+            </div>
+            </div>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/util_url.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+            appcan.initBounce();
+        })
+ 
+        function login() {
+            var uname = document.getElementById("text_0").value;
+            var pswd = document.getElementById("text_1").value;
+            // if(uname == "" || pswd == ""){
+                // appcan.window.openToast("请输入用户名和密码！", 3000, '5', '0');
+                // return;
+            // }
+            if(uname == "" ||(!/[^\d]{3,}/.test(uname))){
+                uexWindow.alert("提示","请输入至少3个字符的用户名！","确定");
+                return;
+            }
+            else if(pswd == ""||(!/^[0-9A-Za-z]{2,21}$/.test(pswd))){
+                //appcan.window.openToast("请输入确认密码！", 3000, '5', '0');
+                uexWindow.alert("提示","请输入至少2个字符或数字的密码！","确定");
+                return;
+            }
+            else{
+            appcan.ajax({
+                url : server_url+'/login.action',
+                type : 'GET',
+                dataType:"json",
+                data : {
+                    "user.userName" : uname,
+                    "user.userPassword" : pswd
+                },
+                success : function(data) {
+                //var obj = eval( "(" + data + ")" );//转换后的JSON对象
+                    if (data.user.userId > 0) {//登陆成功
+                        appcan.locStorage.setVal("user_id",data.user.userId);
+                        appcan.locStorage.setVal("user_name",data.user.userName);
+                        appcan.locStorage.setVal("user_email",data.user.email);
+                        appcan.window.openToast('登录成功', '2000');
+                        var timer = setTimeout(function() {
+                            appcan.openWinWithUrl('index', 'index.html');
+                            //页面跳转
+                        }, 2000);
+                    }else {
+                        appcan.window.openToast('账号或密码错误！', '2000');
+                    }
+                }
+            });
+            }
+        }
+ 
+        //打开注册页面
+        function openRegister(){
+            appcan.window.open({
+                name : 'register',
+                data : 'register.html',
+            });
+        }
+ 
+        function setCookie(NameOfCookie, value, expiredays)   
+        {
+            var ExpireDate = new Date ();   
+            ExpireDate.setTime(ExpireDate.getTime() + (expiredays * 24 * 3600 * 1000));   
+            document.cookie = NameOfCookie + "=" + escape(value) + ((expiredays == null) ? "" : "; expires=" + ExpireDate.toGMTString());   
+        }
+ 
+        function getCookie(NameOfCookie)   
+        {
+            if (document.cookie.length > 0){
+                begin = document.cookie.indexOf(NameOfCookie+"=");   
+                if (begin != -1){
+                    begin += NameOfCookie.length+1;
+                    end = document.cookie.indexOf(";", begin);  
+                    if (end == -1) end = document.cookie.length;
+                    return unescape(document.cookie.substring(begin, end)); 
+                }    
+ 
+            }   
+            return null;
+        }
+ 
+        function delCookie (NameOfCookie)   
+        {
+            if (getCookie(NameOfCookie)) {
+                var date=new Date(); 
+                date.setTime(date.getTime()-10000); 
+                document.cookie = NameOfCookie + "=" + "; expires="+date.toGMTString(); 
+            }   
+        }
+    </script>
+</html>

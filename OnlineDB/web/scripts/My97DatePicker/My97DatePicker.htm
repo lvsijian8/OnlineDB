@@ -24,7 +24,7 @@ $dp.getLangIndex = function(name){
 		}
 	}
 	return -1;
-}
+};
 
 $dp.getLang = function(name){
 	var index = $dp.getLangIndex(name);
@@ -32,7 +32,7 @@ $dp.getLang = function(name){
 		index = 0;
 	}
 	return langList[index];
-}
+};
  
 $dp.realLang = $dp.getLang($dp.lang);
 document.write("<script src='lang/" + $dp.realLang.name + ".js' charset='" + $dp.realLang.charset + "'><\/script>");

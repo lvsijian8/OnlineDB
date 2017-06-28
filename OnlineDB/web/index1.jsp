@@ -20,7 +20,7 @@
                 success: function (data) {//交互成功后将返回信息输出至HTML相应位置
                     switch (ceng) {
                         case 0: {//点击连接
-                            alert( "Data Saved: " + data );
+                            //alert( "Data Saved: " + data );
                             var id = "0" + x + "-1-1";
                             $('#' + id)[0].innerHTML = data;
                             $(obj).next(".slist").animate({height: 'toggle', opacity: 'toggle'}, "slow");
@@ -253,22 +253,22 @@
 <div id="side">
     <div id="left_menu">
         <ul id="TabPage2" style="height:200px; margin-top:50px;">
-            <li id="left_tab1" class="selected" onClick="javascript:switchTab('TabPage2','left_tab1');" title="数据库">
+            <li id="left_tab1" class="selected" onClick="switchTab('TabPage2','left_tab1');" title="数据库">
                 <a href="#"><img alt="数据库" title="数据库" src="images/common/1_hover.jpg" width="33" height="31">数据</a>
             </li>
-            <li id="left_tab2" onClick="javascript:switchTab('TabPage2','left_tab2');" title="连接管理">
+            <li id="left_tab2" onClick="switchTab('TabPage2','left_tab2');" title="连接管理">
                 <a href="#"><img alt="连接管理" title="连接管理" src="images/common/2.jpg" width="33" height="31">管理</a>
             </li>
             <li id="left_tab3" title="新建连接">
                 <a href="#"
-                   onclick="javascript:window.open('createUrl.html','','height=600,width=900,top=50,left=250,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no')"><img
+                   onclick="window.open('createUrl.html','','height=600,width=900,top=50,left=250,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no')"><img
                         title="新建连接" src="images/common/3.jpg" width="33" height="31" alt="新建连接">新建</a>
             </li>
         </ul>
 
 
         <div id="nav_show" style="position:absolute; bottom:0px; padding:10px;">
-            <a href="javascript:;" id="show_hide_btn">
+            <a href="javascript:" id="show_hide_btn">
                 <img alt="显示/隐藏" title="显示/隐藏" src="images/common/nav_hide.png" width="35" height="35">
             </a>
         </div>

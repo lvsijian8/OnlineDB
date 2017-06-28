@@ -33,18 +33,17 @@ var artDialog = function (config, ok, cancel) {
 	
 	if (typeof config === 'string' || config.nodeType === 1) {
 		config = {content: config, fixed: !_isMobile};
-	};
-	
-	var api,
+    }
+    var api,
 		defaults = artDialog.defaults,
 		elem = config.follow = this.nodeType === 1 && this || config.follow;
 		
 	// 合并默认配置
 	for (var i in defaults) {
-		if (config[i] === undefined) config[i] = defaults[i];		
-	};
-	
-	// 兼容v4.1.0之前的参数，未来版本将删除此
+		if (config[i] === undefined) config[i] = defaults[i];
+
+}
+    // 兼容v4.1.0之前的参数，未来版本将删除此
 	$.each({ok:"yesFn",cancel:"noFn",close:"closeFn",init:"initFn",okVal:"yesText",cancelVal:"noText"},
 	function(i,o){config[i]=config[i]!==undefined?config[i]:config[o]});
 	
@@ -61,8 +60,8 @@ var artDialog = function (config, ok, cancel) {
 	// 按钮队列
 	if (!$.isArray(config.button)) {
 		config.button = config.button ? [config.button] : [];
-	};
-	if (ok !== undefined) config.ok = ok;
+    }
+    if (ok !== undefined) config.ok = ok;
 	if (cancel !== undefined) config.cancel = cancel;
 	config.ok && config.button.push({
 		name: config.okVal,
@@ -107,7 +106,7 @@ artDialog.fn = artDialog.prototype = {
 		DOM.title.css('cursor', config.drag ? 'move' : 'auto');
 		DOM.content.css('padding', config.padding);
 		
-		that[config.show ? 'show' : 'hide'](true)
+		that[config.show ? 'show' : 'hide'](true);
 		that.button(config.button)
 		.title(config.title)
 		.content(config.content, true)
@@ -167,18 +166,17 @@ artDialog.fn = artDialog.prototype = {
 					next.parentNode.insertBefore(msg, next);
 				} else if (parent) {
 					parent.appendChild(msg);
-				};
-				msg.style.display = display;
+                }
+                msg.style.display = display;
 				that._elemBack = null;
 			};
 			
 			$content.html('');
 			content.appendChild(msg);
 			msg.style.display = 'block';
-			
-		};
-		
-		// 新增内容后调整位置
+
+}
+        // 新增内容后调整位置
 		if (!arguments[1]) {
 			if (that.config.follow) {
 				that.follow(that.config.follow);
@@ -189,14 +187,13 @@ artDialog.fn = artDialog.prototype = {
 				top = top - height / 2;
 				wrap.style.left = Math.max(left, 0) + 'px';
 				wrap.style.top = Math.max(top, 0) + 'px';
-			};
-			if (cssWidth && cssWidth !== 'auto') {
+            }
+            if (cssWidth && cssWidth !== 'auto') {
 				wrap.style.width = wrap.offsetWidth + 'px';
-			};
-			that._autoPositionType();
-		};
-		
-		that._ie6SelectFix();
+            }
+            that._autoPositionType();
+        }
+        that._ie6SelectFix();
 		that._runScript(content);
 		
 		return that;
@@ -220,9 +217,8 @@ artDialog.fn = artDialog.prototype = {
 		} else {
 			title.show().html(text || '');
 			wrap.removeClass(className);
-		};
-		
-		return this;
+        }
+        return this;
 	},
 	
 	/**
@@ -255,10 +251,9 @@ artDialog.fn = artDialog.prototype = {
 				style.left = Math.max(left, dl) + 'px';
 			} else if (typeof left === 'string') {
 				style.left = left;
-			};
-		};
-		
-		if (top || top === 0) {
+            }
+        }
+        if (top || top === 0) {
 			that._top = top.toString().indexOf('%') !== -1 ? top : null;
 			top = that._toNumber(top, wh - oh);
 			
@@ -267,15 +262,13 @@ artDialog.fn = artDialog.prototype = {
 				style.top = Math.max(top, dt) + 'px';
 			} else if (typeof top === 'string') {
 				style.top = top;
-			};
-		};
-		
-		if (left !== undefined && top !== undefined) {
+            }
+        }
+        if (left !== undefined && top !== undefined) {
 			that._follow = null;
 			that._autoPositionType();
-		};
-		
-		return that;
+        }
+        return that;
 	},
 
 	/**
@@ -306,10 +299,9 @@ artDialog.fn = artDialog.prototype = {
 			} else if (typeof width === 'string') {
 				style.width = width;
 				width === 'auto' && wrap.css('width', 'auto');
-			};
-		};
-		
-		if (height) {
+            }
+        }
+        if (height) {
 			that._height = height.toString().indexOf('%') !== -1 ? height : null;
 			maxHeight = _$window.height() - wrap[0].offsetHeight + main[0].offsetHeight;
 			scaleHeight = that._toNumber(height, maxHeight);
@@ -319,10 +311,9 @@ artDialog.fn = artDialog.prototype = {
 				style.height = Math.max(that.config.minHeight, height) + 'px';
 			} else if (typeof height === 'string') {
 				style.height = height;
-			};
-		};
-		
-		that._ie6SelectFix();
+            }
+        }
+        that._ie6SelectFix();
 		
 		return that;
 	},
@@ -337,14 +328,12 @@ artDialog.fn = artDialog.prototype = {
 		if (typeof elem === 'string' || elem && elem.nodeType === 1) {
 			$elem = $(elem);
 			elem = $elem[0];
-		};
-		
-		// 隐藏元素不可用
+        }
+        // 隐藏元素不可用
 		if (!elem || !elem.offsetWidth && !elem.offsetHeight) {
 			return that.position(that._left, that._top);
-		};
-		
-		var expando = _expando + 'follow',
+        }
+        var expando = _expando + 'follow',
 			winWidth = _$window.width(),
 			winHeight = _$window.height(),
 			docLeft =  _$document.scrollLeft(),
@@ -419,9 +408,8 @@ artDialog.fn = artDialog.prototype = {
 				that._focus && that._focus.removeClass(strongButton);
 				that._focus = $(button).addClass(strongButton);
 				that.focus();
-			};
-			
-			// Internet Explorer 的默认类型是 "button"，
+            }
+            // Internet Explorer 的默认类型是 "button"，
 			// 而其他浏览器中（包括 W3C 规范）的默认值是 "submit"
 			// @see http://www.w3school.com.cn/tags/att_button_type.asp
 			button.setAttribute('type', 'button');
@@ -433,8 +421,8 @@ artDialog.fn = artDialog.prototype = {
 				button.innerHTML = name;
 				listeners[name].elem = button;
 				elem.appendChild(button);
-			};
-		});
+            }
+        });
 		
 		buttons[0].style.display = list.length ? '' : 'none';
 		
@@ -470,9 +458,8 @@ artDialog.fn = artDialog.prototype = {
 		that.time();
 		if (typeof fn === 'function' && fn.call(that, window) === false) {
 			return that;
-		};
-		
-		that.unlock();
+        }
+        that.unlock();
 		
 		// 置空内容
 		that._elemBack && that._elemBack();
@@ -490,9 +477,8 @@ artDialog.fn = artDialog.prototype = {
 		// 清空除this.DOM之外临时对象，恢复到初始状态，以便使用单例模式
 		for (var i in that) {
 			if (that.hasOwnProperty(i) && i !== 'DOM') delete that[i];
-		};
-		
-		// 移除HTMLElement或重用
+        }
+        // 移除HTMLElement或重用
 		_box ? wrap.remove() : _box = that;
 		
 		return that;
@@ -513,9 +499,8 @@ artDialog.fn = artDialog.prototype = {
 			that._timer = setTimeout(function(){
 				that._click(cancel);
 			}, 1000 * second);
-		};
-		
-		return that;
+        }
+        return that;
 	},
 	
 	/** 设置焦点 */
@@ -525,8 +510,9 @@ artDialog.fn = artDialog.prototype = {
 				var elem = this._focus && this._focus[0] || this.DOM.close[0];
 				elem && elem.focus();
 			}
-		} catch (e) {}; // IE对不可见元素设置焦点会报错
-		return this;
+        } catch (e) {
+        } // IE对不可见元素设置焦点会报错
+        return this;
 	},
 	
 	/** 置顶对话框 */
@@ -594,9 +580,8 @@ artDialog.fn = artDialog.prototype = {
 			lockMask.css({opacity: config.opacity});
 		} else {
 			lockMask.animate({opacity: config.opacity}, config.duration);
-		};
-		
-		that._lockMaskWrap = lockMaskWrap;
+        }
+        that._lockMaskWrap = lockMaskWrap;
 		that._lockMask = lockMask;
 		
 		that._lock = true;
@@ -617,8 +602,8 @@ artDialog.fn = artDialog.prototype = {
 				style.removeExpression('height');
 				style.removeExpression('left');
 				style.removeExpression('top');
-			};
-			style.cssText = 'display:none';
+            }
+            style.cssText = 'display:none';
 			
 			_box && lockMaskWrap.remove();
 		};
@@ -629,9 +614,8 @@ artDialog.fn = artDialog.prototype = {
 			un();
 		} else {
 			lockMask.animate({opacity: 0}, that.config.duration, un);
-		};
-		
-		that._lock = false;
+        }
+        that._lock = false;
 		return that;
 	},
 	
@@ -651,9 +635,8 @@ artDialog.fn = artDialog.prototype = {
 		for (; i < elsLen; i ++) {
 			name = els[i].className.split('aui_')[1];
 			if (name) DOM[name] = $(els[i]);
-		};
-		
-		return DOM;
+        }
+        return DOM;
 	},
 	
 	// px与%单位转换成数值 (百分比单位按照最大值换算)
@@ -661,16 +644,14 @@ artDialog.fn = artDialog.prototype = {
 	_toNumber: function (thisValue, maxValue) {
 		if (!thisValue && thisValue !== 0 || typeof thisValue === 'number') {
 			return thisValue;
-		};
-		
-		var last = thisValue.length - 1;
+        }
+        var last = thisValue.length - 1;
 		if (thisValue.lastIndexOf('px') === last) {
 			thisValue = parseInt(thisValue);
 		} else if (thisValue.lastIndexOf('%') === last) {
 			thisValue = parseInt(maxValue * thisValue.split('%')[0] / 100);
-		};
-		
-		return thisValue;
+        }
+        return thisValue;
 	},
 	
 	// 让IE6 CSS支持PNG背景
@@ -688,9 +669,9 @@ artDialog.fn = artDialog.prototype = {
 				runtimeStyle.backgroundImage = 'none';
 				runtimeStyle.filter = "progid:DXImageTransform.Microsoft." +
 					"AlphaImageLoader(src='" + pngPath + "',sizingMethod='crop')";
-			};
-		};
-	} : $.noop,
+            }
+        }
+    } : $.noop,
 	
 	// 强制覆盖IE6下拉控件
 	_ie6SelectFix: _isIE6 ? function () {
@@ -712,8 +693,8 @@ artDialog.fn = artDialog.prototype = {
 			iframe.src = 'about:blank';
 			iframe.style.cssText = 'position:absolute;z-index:-1;left:0;top:0;'
 			+ 'filter:alpha(opacity=0);width:' + width + ';height:' + height;
-		};
-	} : $.noop,
+        }
+    } : $.noop,
 	
 	// 解析HTML片段中自定义类型脚本，其this指向artDialog内部
 	// <script type="text/dialog">/* [code] */</script>
@@ -727,15 +708,14 @@ artDialog.fn = artDialog.prototype = {
 			if (tags[i].type === 'text/dialog') {
 				script[n] = tags[i].innerHTML;
 				n ++;
-			};
-		};
-		
-		if (script.length) {
+            }
+        }
+        if (script.length) {
 			script = script.join('');
 			fun = new Function(script);
 			fun.call(this);
-		};
-	},
+        }
+    },
 	
 	// 自动切换定位类型
 	_autoPositionType: function () {
@@ -754,8 +734,8 @@ artDialog.fn = artDialog.prototype = {
 					backgroundImage: 'url(about:blank)',
 					backgroundAttachment: 'fixed'
 				});
-			};
-		});
+            }
+        });
 		
 		return function () {
 			var $elem = this.DOM.wrap,
@@ -775,8 +755,8 @@ artDialog.fn = artDialog.prototype = {
 					+ (top - sTop) + ') + "px"');
 			} else {
 				style.position = 'fixed';
-			};
-		};
+            }
+        };
 	}()),
 	
 	// 设置绝对定位
@@ -786,9 +766,8 @@ artDialog.fn = artDialog.prototype = {
 		if (_isIE6) {
 			style.removeExpression('left');
 			style.removeExpression('top');
-		};
-
-		style.position = 'absolute';
+        }
+        style.position = 'absolute';
 	},
 	
 	// 按钮回调函数触发
@@ -814,16 +793,15 @@ artDialog.fn = artDialog.prototype = {
 			// IE6~7 window.onresize bug
 			newSize = that._winSize =  _$window.width() * _$window.height();
 			if (oldSize === newSize) return;
-		};
-		
-		if (width || height) that.size(width, height);
+        }
+        if (width || height) that.size(width, height);
 		
 		if (elem) {
 			that.follow(elem);
 		} else if (left || top) {
 			that.position(left, top);
-		};
-	},
+        }
+    },
 	
 	// 事件代理
 	_addEvent: function () {
@@ -855,9 +833,8 @@ artDialog.fn = artDialog.prototype = {
 			} else {
 				callbackID = target[_expando + 'callback'];
 				callbackID && that._click(callbackID);
-			};
-			
-			that._ie6SelectFix();
+            }
+            that._ie6SelectFix();
 		})
 		.bind('mousedown', function () {
 			that.zIndex();
@@ -922,9 +899,8 @@ _path = window['_artDialog_path'] || (function (script, i, me) {
 	for (i in script) {
 		// 如果通过第三方脚本加载器加载本文件，请保证文件名含有"artDialog"字符
 		if (script[i].src && script[i].src.indexOf('artDialog') !== -1) me = script[i];
-	};
-	
-	_thisScript = me || script[script.length - 1];
+    }
+        _thisScript = me || script[script.length - 1];
 	me = _thisScript.src.replace(/\\/g, '/');
 	return me.lastIndexOf('/') < 0 ? '.' : me.substring(0, me.lastIndexOf('/'));
 }(document.getElementsByTagName('script')));
@@ -938,10 +914,7 @@ if (_skin) {
 	link.rel = 'stylesheet';
 	link.href = _path + '/skins/' + _skin + '.css?' + artDialog.fn.version;
 	_thisScript.parentNode.insertBefore(link, _thisScript);
-};
-
-
-
+}
 // 触发浏览器预先缓存背景图片
 _$window.bind('load', function () {
 	setTimeout(function () {
@@ -955,11 +928,8 @@ _$window.bind('load', function () {
 // 开启IE6 CSS背景图片缓存
 try {
 	document.execCommand('BackgroundImageCache', false, true);
-} catch (e) {};
-
-
-
-
+} catch (e) {
+}
 // 使用uglifyjs压缩能够预先处理"+"号合并字符串
 // uglifyjs: http://marijnhaverbeke.nl/uglifyjs
 artDialog._templates =
@@ -1068,9 +1038,8 @@ window.artDialog = $.dialog = $.artDialog = artDialog;
 //------------------------------------------------
 // 对话框模块-拖拽支持（可选外置模块）
 //------------------------------------------------
-;(function ($) {
-
-var _dragEvent, _use,
+(function ($) {
+    var _dragEvent, _use,
 	_$window = $(window),
 	_$document = $(document),
 	_elem = document.documentElement,
@@ -1150,8 +1119,9 @@ _use = function (event) {
 	} : function () {
 		try {
 			document.selection.empty();
-		} catch (e) {};
-	};
+        } catch (e) {
+        }
+    };
 	
 	// 对话框准备拖动
 	_dragEvent.onstart = function (x, y) {
@@ -1161,9 +1131,8 @@ _use = function (event) {
 		} else {
 			startLeft = wrap[0].offsetLeft;
 			startTop = wrap[0].offsetTop;
-		};
-		
-		_$document.bind('dblclick', _dragEvent.end);
+        }
+        _$document.bind('dblclick', _dragEvent.end);
 		!_isIE6 && _isLosecapture ?
 			title.bind('losecapture', _dragEvent.end) :
 			_$window.bind('blur', _dragEvent.end);
@@ -1194,9 +1163,8 @@ _use = function (event) {
 
 			style.left = left  + 'px';
 			style.top = top + 'px';
-		};
-			
-		clsSelect();
+        }
+        clsSelect();
 		api._ie6SelectFix();
 	};
 	
@@ -1254,7 +1222,7 @@ _$document.bind('mousedown', function (event) {
 		_dragEvent = _dragEvent || new artDialog.dragEvent();
 		_use(event);
 		return false;// 防止firefox与chrome滚屏
-	};
+    }
 });
 
 })(this.art || this.jQuery && (this.art = jQuery));

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="bean.Url" table="url" schema="OnlineDBm">
+        <id name="urlId">
+            <column name="url_id" sql-type="int(15)"/>
+        </id>
+        <property name="url">
+            <column name="url" sql-type="varchar(64)" length="64"/>
+        </property>
+        <property name="urlUser">
+            <column name="url_user" sql-type="varchar(64)" length="64"/>
+        </property>
+        <property name="urlPassword">
+            <column name="url_password" sql-type="varchar(32)" length="32"/>
+        </property>
+        <property name="urlName">
+            <column name="url_name" sql-type="varchar(32)" length="32" not-null="true"/>
+        </property>
+        <property name="userId">
+            <column name="user_id" sql-type="int(15)"/>
+        </property>
+    </class>
+</hibernate-mapping>

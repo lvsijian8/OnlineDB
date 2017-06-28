@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/jquery.autocomplete.css">
+    </head>
+    <body class="" ontouchstart>
+        <div class="c-wh uinnh5 umar-a ub-ac ub-pc">
+            <form method="get" action="">
+            <div class="uba uc-a1 bc-border umar-t umar-b">
+                <div class="ub uinn5 bc-border ubb">
+                    <div class="ulev1 ub ub-f1 ub-ac ub-pc"><strong>连接数据库</strong></div>
+                </div>
+                <div class="ub uinn5 bc-border ubb">
+                    <div class="ub ub-ac uw-reg ulev-app1">连接名</div>
+                    <div class="ub ub-ac ub-f1">
+                        <div class="uinput ub ub-f1">
+                            <input placeholder="请输入您的连接名" type="text" id="linkname" name="linkname" class="ub-f1" onkeyup="this.value=this.value.replace(' ','')">
+                        </div>
+                    </div>
+                </div>
+                <div class="ub uinn5 bc-border ubb">
+                    <div class="ub ub-ac uw-reg ulev-app1">主机名</div>
+                    <div class="ub ub-ac ub-f1">
+                        <div class="uinput ub ub-f1">
+                            <input placeholder="请输入您的主机名" type="text" id="mainname" name="mainname" class="ub-f1" onkeyup="this.value=this.value.replace(' ','')">
+                        </div>
+                    </div>
+                </div>
+                <div class="ub uinn5 bc-border ubb">
+                    <div class="ub ub-ac uw-reg ulev-app1">用户名</div>
+                    <div class="ub ub-ac ub-f1">
+                        <div class="uinput ub ub-f1">
+                            <input placeholder="请输入您的用户名" type="text" id="username1" name="username1" class="ub-f1" onkeyup="this.value=this.value.replace(' ','')">
+                        </div>
+                    </div>
+                </div>
+                <div class="ub uinn5">
+                    <div class="ub ub-ac uw-reg ulev-app1">密码</div>
+                    <div class="ub ub-ac  ub-f1">
+                        <div class="uinput ub ub-f1">
+                            <input placeholder="请输入您的密码" type="password" id="password1" name="password1" class="ub-f1" onkeyup="this.value=this.value.replace(' ','')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uinn-at1 umar-t">
+                <div class="btn ub ub-ac bc-text-head ub-pc bc-btn umar-t uc-a1"  id="link">连接</div>
+            </div>
+            </form>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/appcan.listview.js"></script>
+        <script src="js/util_url.js"></script>
+	</body>
+	<script>
+        appcan.ready(function() {
+            appcan.initBounce();
+        })  
+        
+        appcan.button("#link", "ani-act", function() {
+            var linkname = document.getElementById("linkname").value;
+            var mainname = document.getElementById("mainname").value;
+            var username1 = document.getElementById("username1").value;
+            var password1 = document.getElementById("password1").value;
+            if(linkname == ""){
+                uexWindow.alert("提示","请输入连接名！","确定");
+                return;
+            }
+            if(mainname == ""){
+                uexWindow.alert("提示","请输入主机名！","确定");
+                return;
+            }
+            if(username1 == ""){
+                uexWindow.alert("提示","请输入用户名！","确定");
+                return;
+            }
+            if(password1 == ""){
+                //appcan.window.openToast("请输入确认密码！", 3000, '5', '0');
+                uexWindow.alert("提示","请输入密码！","确定");
+                return;
+            }
+            appcan.ajax({
+                url : server_url+'/create.action',
+                type : 'GET',
+                dataType:"json",
+                data : {
+                    "url.url" : mainname,
+                    "url.urlUser" : username1,
+                    "url.urlPassword" : password1,
+                    "url.urlName" : linkname,
+                    "url.userId" : appcan.locStorage.getVal('user_id')
+                },
+                success : function(data) {
+                    if (data.url.urlId > 0) {//成功
+                        appcan.window.openToast('添加成功', '2000');
+                        var timer = setTimeout(function() {
+                            appcan.openWinWithUrl('index', 'index.html');
+                            //页面跳转
+                        }, 2000);
+                    }else {
+                        appcan.window.openToast('添加错误,请重试', '2000');
+                    }
+                }
+            });
+        })
+                  
+    </script>
+</html>

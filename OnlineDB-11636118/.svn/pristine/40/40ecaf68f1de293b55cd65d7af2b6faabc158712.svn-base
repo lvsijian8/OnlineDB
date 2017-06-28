@@ -1,0 +1,67 @@
+#Page_LsMSKS {
+	background-color:rgba(255,255,255,1);
+	color:rgba(0,0,0,1);
+}
+#HeaderBox_yqluP9 {
+	padding:2.63em 0em 0em 0em;
+	background-color:rgba(255,255,255,1);
+	color:rgba(0,0,0,1);
+}
+#Box_gYrS1Z {
+	background-color:rgba(255,255,255,1);
+}
+#Icon_ibVPCL {
+	width:13.81em;
+	height:9.25em;
+	left:-0.69em;
+	top:0.75em;
+	margin:0em 3.75em 0em 3.75em;
+	background-image:url(../css/res/logo.png);
+}
+#iconInput_uC5EhX {
+	margin:1.56em 1.56em 1.56em 1.56em;
+	border-style:solid;
+	border-color:rgba(199,194,194,1);
+	border-radius:5px;
+	font-size:1em;
+}
+#iconInput_kDEXu6 {
+	margin:0em 1.56em 1.56em 1.56em;
+	border-style:solid;
+	border-color:rgba(199,194,194,1);
+	border-radius:5px;
+	font-size:1em;
+}
+#iconInput_ZqSQHE {
+	margin:0em 1.56em 1.56em 1.56em;
+	border-style:solid;
+	border-radius:5px;
+	font-size:1em;
+}
+#iconInput_bWh5qT {
+	margin:0em 1.56em 1.56em 1.56em;
+	border-style:solid;
+	border-radius:5px;
+	font-size:1em;
+}
+#iconInput_KzdcG4 {
+	margin:0em 1.56em 1.56em 1.56em;
+	border-style:solid;
+	border-radius:5px;
+	font-size:1em;
+}
+#Button_NWYtnZ {
+	margin:0em 1.56em 0em 1.56em;
+	border-style:none;
+	border-radius:5px;
+	font-size:1em;
+}
+#Text_7KCxJh {
+	-webkit-line-clamp:1;
+	font-size:0.8em;
+	margin:0em 0em 0em 1.88em;
+}
+#Header_T2WiV6 {
+	background-color:rgba(0,161,234,1);
+	color:rgba(255,255,255,1);
+}

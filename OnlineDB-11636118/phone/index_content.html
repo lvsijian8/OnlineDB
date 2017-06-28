@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/touch.min.js"></script>
+        <script type="text/javascript" src="js/cat.touchjs.js"></script>
+        <script src="js/colResizable-1.6.min.js"></script>
+        <script type="text/javascript" src="js/tdchange.js"></script>
+        <link rel="stylesheet" href="css/jquery.autocomplete.css">
+        <title></title>
+        <script>
+            function fix_table($obj) {
+                if (!$obj || $obj.length <= 0 || ($('html').height() - $(window).height()) < 0)
+                    return false;
+                $obj.show();
+                //最大高度为不包含滚动条的高度
+                var height = $obj.find('tbody').height() - ($('html').height() - $(window).height()) - 3;
+                //设置表格内容高度和宽度
+                $obj.find('tbody').css({
+                    'max-width' : $obj.width(),
+                    'overflow' : 'auto',
+                    'max-height' : height
+                });
+                //移出复制的表头并重新添加
+                $obj.find("#hide_tr").remove();
+                //内容宽度自适应
+                $obj.find('thead tr th').css('width', 'auto');
+                // 表头复制并插入到内容
+                $obj.find('tbody tr:first').before($obj.find('thead tr').clone());
+                var _th = $obj.find('thead th');
+                //移出内容的行信息并设置跟表头一样的宽度
+                $obj.find('tbody tr:first th').each(function(i, j) {
+                    $(this).html('').width($(_th[i]).innerWidth());
+                });
+                //表格第一行内容不显示仅占位
+                $obj.find('tbody tr:first').attr('id', 'hide_tr').css('display', 'table-row');
+                //显示滚动条
+                $obj.find('tbody,thead tr,tfoot tr').css('display', 'block');
+                //表格内容宽
+                _th = $obj.find('tbody th');
+                //表头th宽跟内容th宽一致
+                $obj.find('thead tr:first th').each(function(i, j) {
+                    $(this).width($(_th[i]).width());
+                });
+                //页脚th宽跟内容th宽一致
+                $obj.find('tfoot tr:first th').each(function(i, j) {
+                    $(this).width($(_th[i]).width());
+                });
+            }
+        
+    window.onload=function(){
+            window.setTimeout("changtable()",30000);
+    }
+        </script>
+        <style type="text/css">
+        .hidtab
+        {
+            display:none;
+        }
+        </style>
+    </head>
+    <body class="um-vp bgc-wh" ontouchstart>
+    <script>
+            var iindex=0;
+    function changtable() {
+            iindex++;
+            if (iindex>3) {iindex=1;}
+            //alert(iindex);
+            $('table').addClass("hidtab");
+            $('#biao'+iindex).removeClass("hidtab");
+            window.setTimeout("changtable()",30000);
+            //$("table").removeClass("hidtab");
+        }
+    </script>
+        <form method="post">
+            <div id="main">
+                <div class="ub umar-l">
+                    <input id="add" type="button" class="wh_inputbtn umw4 umh4" value="增加"/>
+                    <input id="del" type="button" class="wh_inputbtn umw4 umh4" value="删除"/>
+                    <input id="sel" type="button" class="wh_inputbtn umw4 umh4" value="查找">
+                    <input id="save" type="submit" class="wh_inputbtn umw4 umh4" value="保存">
+                </div>
+                <br />
+                <table id="biao1" class="hidtab" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <th width="30">
+                            <input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);">
+                            </th><th>time</th><th>out_temperature</th><th>out_humidity</th><th>in_humidity</th><th>light</th>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="0" class="acb">
+                            </td><td>2016-11-21 10:20:53.0</td><td>30</td><td>37</td><td>50</td><td>83</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="1" class="acb">
+                            </td><td>2016-11-21 10:29:53.0</td><td>30</td><td>37</td><td>80</td><td>84</td><iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="2" class="acb">
+                            </td><td>2016-11-22 10:29:50.0</td><td>27</td><td>44</td><td>65</td><td>85</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="3" class="acb">
+                            </td><td>2016-11-22 10:29:52.0</td><td>30</td><td>42</td><td>82</td><td>84</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="4" class="acb">
+                            </td><td>2016-11-23 10:29:48.0</td><td>24</td><td>48</td><td>65</td><td>84</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="5" class="acb">
+                            </td><td>2016-11-23 10:29:49.0</td><td>24</td><td>47</td><td>50</td><td>85</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="6" class="acb">
+                            </td><td>2016-11-24 10:29:49.0</td><td>24</td><td>47</td><td>80</td><td>85</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="7" class="acb">
+                            </td><td>2016-11-24 10:29:50.0</td><td>27</td><td>44</td><td>65</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="8" class="acb">
+                            </td><td>2016-11-25 10:29:52.0</td><td>30</td><td>42</td><td>85</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="9" class="acb">
+                            </td><td>2016-11-25 10:29:53.0</td><td>30</td><td>37</td><td>50</td><td>86</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="10" class="acb">
+                            </td><td>2016-11-26 10:29:54.0</td><td>25</td><td>39</td><td>81</td><td>85</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="11" class="acb">
+                            </td><td>2016-11-26 10:29:55.0</td><td>25</td><td>53</td><td>50</td><td>86</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="12" class="acb">
+                            </td><td>2016-11-27 10:29:57.0</td><td>25</td><td>40</td><td>85</td><td>86</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="13" class="acb">
+                            </td><td>2016-11-27 10:29:58.0</td><td>25</td><td>40</td><td>50</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="14" class="acb">
+                            </td><td>2016-11-28 10:30:00.0</td><td>25</td><td>43</td><td>84</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="15" class="acb">
+                            </td><td>2016-11-28 10:30:01.0</td><td>25</td><td>44</td><td>54</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="16" class="acb">
+                            </td><td>2016-11-29 10:30:02.0</td><td>25</td><td>44</td><td>82</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="17" class="acb">
+                            </td><td>2016-11-29 10:30:04.0</td><td>25</td><td>43</td><td>52</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="18" class="acb">
+                            </td><td>2017-04-17 10:00:00.0</td><td>25</td><td>48</td><td>84</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="19" class="acb">
+                            </td><td>2017-04-17 16:00:00.0</td><td>27</td><td>50</td><td>53</td><td>86</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="20" class="acb">
+                            </td><td>2017-04-18 10:00:00.0</td><td>26</td><td>48</td><td>84</td><td>84</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="21" class="acb">
+                            </td><td>2017-04-18 16:00:12.0</td><td>28</td><td>46</td><td>86</td><td>87</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="22" class="acb">
+                            </td><td>2017-04-19 10:00:48.0</td><td>24</td><td>61</td><td>57</td><td>82</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="23" class="acb">
+                            </td><td>2017-04-19 16:00:10.0</td><td>26</td><td>63</td><td>84</td><td>84</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="biao2" class="hidtab" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <th width="30">
+                            <input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);">
+                            </th><th>user_id</th><th>user_name</th><th>user_password</th><th>phone</th><th>email</th>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="0" class="acb">
+                            </td><td>1</td><td>mysql</td><td>mysql</td><td>12345678901</td><td>9876543210@qq.com</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="1" class="acb">
+                            </td><td>2</td><td>吕斯健</td><td>111</td><td>12345678901</td><td>111</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="2" class="acb">
+                            </td><td>3</td><td>lll</td><td>lll</td><td>13554773703</td><td>499365864@qq.com</td><iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table id="biao3" class="hidtab" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <th width="30">
+                            <input type="checkbox" id="all" onclick="selectOrClearAllCheckbox(this);">
+                            </th><th>pot_id</th><th>user_id</th><th>device</th><th>time</th><th>handle</th><th>detail</th>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="0" class="acb">
+                            </td><td>1</td><td>1</td><td>安卓</td><td>2017-04-17 22:03:58.0</td><td>watering</td><td>浇水完成后剩余51%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="1" class="acb">
+                            </td><td>1</td><td>1</td><td>安卓</td><td>2017-04-17 22:04:21.0</td><td>set</td><td>修改浇水设置:浇水间隔为4天,浇水时间为:16点,浇水量为:50ml.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="2" class="acb">
+                            </td><td>15</td><td>1</td><td>安卓</td><td>2017-04-17 22:18:32.0</td><td>fertilizering</td><td>施肥完成后剩余200%</td><iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="3" class="acb">
+                            </td><td>null</td><td>1</td><td>web</td><td>2017-04-18 09:18:55.0</td><td>login</td><td>登陆ip:0:0:0:0:0:0:0:1,地址:获取地址失败</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="4" class="acb">
+                            </td><td>1</td><td>1</td><td>网页</td><td>2017-04-18 09:21:28.0</td><td>watering</td><td>完成后剩余84%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="5" class="acb">
+                            </td><td>1</td><td>1</td><td>网页</td><td>2017-04-18 09:22:07.0</td><td>fertilizering</td><td>完成后剩余82%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="6" class="acb">
+                            </td><td>1</td><td>1</td><td>网页</td><td>2017-04-18 09:22:24.0</td><td>fertilizering</td><td>完成后剩余77%</td>
+                        </tr>
+                        <tr>
+                            <td>
+                            <input type="checkbox" name="BiaoCheck" value="7" class="acb">
+                            </td><td>1</td><td>1</td><td>网页</td><td>2017-04-18 09:28:51.0</td><td>set</td><td>修改设置:间隔为w天,时间为:6,time:11点,量为:60ml</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id='dialog'>
+                <div id="content1">
+                    <div class="ub ub-ac ub-pc ub-ver umar-a">
+                        <div class="ub umar-a ui-widget">
+                            <textarea rows="5" cols="40"></textarea>
+                        </div>
+                        <div class="ub umar-a">
+                            <input class="umw4 umh4" type="submit" value="确定"/>
+                            <input class="umw4 umh4" type="reset" value="重置"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="vx"></div>
+                <div id="close">
+                    关闭
+                </div>
+            </div>
+        </form>
+        <script src="js/main.js"></script>
+    </body>
+    <script>
+appcan.ready(function() {
+appcan.initBounce();
+})
+
+    </script>
+</html>

@@ -1,6 +1,6 @@
 function checkIdcard(idcard) {
-	var Errors = new Array("验证通过!", "身份证号码位数不对!", "身份证号码出生日期超出范围或含有非法字符!",
-			"身份证号码校验错误!", "身份证地区非法!");
+	var Errors = ["验证通过!", "身份证号码位数不对!", "身份证号码出生日期超出范围或含有非法字符!",
+			"身份证号码校验错误!", "身份证地区非法!"];
 	var area = {
 		11 : "北京",
 		12 : "天津",
@@ -42,7 +42,7 @@ function checkIdcard(idcard) {
 		91 : "国外"
 	};
 
-	var areaArray = new Array();
+	var areaArray = [];
 	areaArray['140202'] = '山西省大同市城区';
 	areaArray['140203'] = '山西省大同市矿区';
 	areaArray['140211'] = '山西省大同市南郊区';
@@ -3577,7 +3577,7 @@ function checkIdcard(idcard) {
 
 	var idcard, Y, JYM;
 	var S, M;
-	var idcard_array = new Array();
+	var idcard_array = [];
 	idcard_array = idcard.split("");
 	//地区检验   
 	if (area[parseInt(idcard.substr(0, 2))] == null)
@@ -3597,7 +3597,7 @@ function checkIdcard(idcard) {
 
 			document.getElementById("txtbirthday").value = "19"
 					+ idcard.substr(6, 2) + "/" + idcard.substr(8, 2) + "/"
-					+ idcard.substr(10, 2)
+					+ idcard.substr(10, 2);
 			if (parseInt(idcard.substr(14, 1)) % 2 == 0) {
 				document.getElementById("txtsex").value = "女";
 			} else {
@@ -3657,7 +3657,7 @@ function checkIdcard(idcard) {
 						+ "-"
 						+ idcard.substr(10, 2)
 						+ "-"
-						+ idcard.substr(12, 2)
+						+ idcard.substr(12, 2);
 				if (parseInt(idcard.substr(16, 1)) % 2 == 0) {
 					document.getElementById("zuhuSex").options[1].selected  = true;
 				} else {

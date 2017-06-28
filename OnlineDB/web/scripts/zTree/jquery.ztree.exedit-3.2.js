@@ -81,7 +81,7 @@
 		r.curHoverNode = null;
 		r.dragFlag = 0;
 		r.dragNodeShowBefore = [];
-		r.dragMaskList = new Array();
+		r.dragMaskList = [];
 		r.showHoverDom = true;
 	},
 	//default cache of exedit
@@ -177,7 +177,7 @@
 			node = root.curEditNode;
 			if (!root.curEditNode) return;
 			view.cancelCurEditNode(setting, newName?newName:node[nameKey]);
-		}
+		};
 		zTreeTools.copyNode = function(targetNode, node, moveType, isSilent) {
 			if (!node) return null;
 			if (targetNode && !targetNode.isParent && setting.data.keep.leaf && moveType === consts.move.TYPE_INNER) return null;
@@ -201,12 +201,12 @@
 				view.moveNode(setting, targetNode, newNode, moveType, false, isSilent);
 			}
 			return newNode;
-		}
+		};
 		zTreeTools.editName = function(node) {
 			if (!node || !node.tId || node !== data.getNodeCache(setting, node.tId)) return;
 			if (node.parentTId) view.expandCollapseParentNode(setting, node.getParentNode(), true);
 			view.editNode(setting, node)
-		}
+		};
 		zTreeTools.moveNode = function(targetNode, node, moveType, isSilent) {
 			if (!node) return node;
 			if (targetNode && !targetNode.isParent && setting.data.keep.leaf && moveType === consts.move.TYPE_INNER) {
@@ -225,7 +225,7 @@
 				moveCallback();
 			}
 			return node;
-		}
+		};
 		zTreeTools.setEditable = function(editable) {
 			setting.edit.enable = editable;
 			return this.refresh();
@@ -983,7 +983,7 @@
 				}
 			}
 			if (moveType == consts.move.TYPE_INNER) {
-				if (!targetNode[childKey]) targetNode[childKey] = new Array();
+				if (!targetNode[childKey]) targetNode[childKey] = [];
 				if (targetNode[childKey].length > 0) {
 					newNeighbor = targetNode[childKey][targetNode[childKey].length - 1];
 					newNeighbor.isLastNode = false;
@@ -1022,7 +1022,7 @@
 
 			//repair node what been moved
 			view.setNodeLineIcos(setting, node);
-			view.repairNodeLevelClass(setting, node, oldLevel)
+			view.repairNodeLevelClass(setting, node, oldLevel);
 
 			//repair node's old parentNode dom
 			if (!setting.data.keep.parent && oldParentNode[childKey].length < 1) {
@@ -1121,7 +1121,7 @@
 			}
 		}
 		if (_cancelPreSelectedNode) _cancelPreSelectedNode.apply(view, arguments);
-	}
+	};
 
 	var _createNodes = view.createNodes;
 	view.createNodes = function(setting, level, nodes, parentNode) {
@@ -1132,11 +1132,11 @@
 		if (view.repairParentChkClassWithSelf) {
 			view.repairParentChkClassWithSelf(setting, parentNode);
 		}
-	}
+	};
 
 	view.makeNodeUrl = function(setting, node) {
 		return (node.url && !setting.edit.enable) ? node.url : null;
-	}
+	};
 
 	var _removeNode = view.removeNode;
 	view.removeNode = function(setting, node) {
@@ -1145,7 +1145,7 @@
 		if (_removeNode) {
 			_removeNode.apply(view, arguments);
 		}
-	}
+	};
 
 	var _selectNode = view.selectNode;
 	view.selectNode = function(setting, node, addFlag) {
@@ -1156,7 +1156,7 @@
 		if (_selectNode) _selectNode.apply(view, arguments);
 		view.addHoverDom(setting, node);
 		return true;
-	}
+	};
 
 	var _uCanDo = tools.uCanDo;
 	tools.uCanDo = function(setting, e) {

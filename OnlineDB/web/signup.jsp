@@ -72,7 +72,7 @@
                     </div>
                     <div>
                         重输密码：<input type="password" name="password2" class="pwd" id="password2" required
-                                    onblur="javascript:pd(this);"><font color="red">*</font> <span id="pswInfo"></span>
+                                    onblur="pd(this);"><font color="red">*</font> <span id="pswInfo"></span>
                     </div>
 
                     <div id="btn_area">
